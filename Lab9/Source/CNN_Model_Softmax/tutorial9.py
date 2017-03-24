@@ -8,7 +8,7 @@ from tensorflow.contrib.session_bundle import exporter
 
 import tensorflow as tf
 sess = tf.InteractiveSession()
-
+start = int(round(time.time() * 1000))
 notmnist_data = NotMNIST()
 
 tf.logging.set_verbosity(tf.logging.INFO)
@@ -146,3 +146,8 @@ model_exporter.init(
         'outputs': exporter.generic_signature({'scores': y_})})
 
 model_exporter.export(export_path, tf.constant(1), sess)
+
+
+end = int(round(time.time() * 1000))
+print("Time for building convnet: ")
+print(end - start)
